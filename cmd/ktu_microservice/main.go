@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"net/http"
+	"os"
 
 	json "github.com/dustin/gojson"
 )
@@ -19,20 +20,20 @@ type Book struct {
 	Published Published
 }
 
+var name string
+
 func main() {
+	name = os.Getenv("NAME")
+	port := os.Getenv("PORT")
 	http.HandleFunc("/books/1", BooksHandler)
-	http.HandleFunc("/", DefaultHandler)
+	http.HandleFunc("/", HelloServer)
 	//http.HandleFunc("/", HelloServer)
-	fmt.Println("SERVER STARTING: http://localhost:8080")
+	fmt.Println("SERVER STARTING: http://localhost:" + port)
 	http.ListenAndServe(":8080", nil)
 }
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello web!")
-}
-
-func DefaultHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "It works!")
+	fmt.Fprint(w, "Hello dear '"+name+"'!")
 }
 
 func BooksHandler(w http.ResponseWriter, r *http.Request) {

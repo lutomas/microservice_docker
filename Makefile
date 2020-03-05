@@ -1,7 +1,7 @@
 
 .PHONY = run
 
-LDFLAGS		+= -s -w -v
+LDFLAGS		+= -s -w
 LDFLAGS_LINUX		+= -linkmode external -extldflags -static
 
 run:
