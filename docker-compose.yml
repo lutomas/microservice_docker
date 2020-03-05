@@ -1,0 +1,38 @@
+version: '3.3'
+#volumes:
+#  postgres.data:
+#  pg-admin4.data:
+
+services:
+#  frontend:
+#    image: ktu/frontend:latest
+#    container_name: ktu-frontend
+#    depends_on:
+#      - ktu-microservice-api
+#    restart: always
+#    environment:
+#      - FOO=BAR
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    container_name: ktu-microservice-api
+#    depends_on:
+#      - psql
+    ports:
+      - 18080:8080 # Users  API
+    restart: always
+#    environment:
+  psql:
+    image: postgres:11
+    container_name: apollo-postgres
+    restart: always
+    volumes:
+      - "postgres.data:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - PGDATA=/var/lib/postgresql/data/pgdata
