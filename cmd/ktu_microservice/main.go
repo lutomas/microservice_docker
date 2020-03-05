@@ -33,6 +33,7 @@ func main() {
 }
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Request from:", r.RemoteAddr, r.URL)
 	fmt.Fprint(w, "Hello dear '"+name+"'!")
 }
 
