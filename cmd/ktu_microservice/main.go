@@ -25,6 +25,9 @@ var name string
 func main() {
 	name = os.Getenv("NAME")
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	http.HandleFunc("/books/1", BooksHandler)
 	http.HandleFunc("/", HelloServer)
 	//http.HandleFunc("/", HelloServer)

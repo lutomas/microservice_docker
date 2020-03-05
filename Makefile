@@ -21,7 +21,7 @@ backend_docker:
 
 docker-run: backend_docker
 	#docker run -p 18080:8080 ktu/ktu_microservice_api:alpha
-	docker run -p 18080:8080 -e "PORT=18080" ktu/ktu_microservice_api:alpha
+	docker run -p 18080:8080 -e "PORT=18080" -e "NAME=Docker is running" ktu/ktu_microservice_api:alpha
 
 docker-run-deamon: docker-stop-deamon backend_docker
 	docker run -d --name ktu-mikro-deamon -p 28080:8080 -e "PORT=28080" -e="NAME=Arteja pavasaris" ktu/ktu_microservice_api:alpha

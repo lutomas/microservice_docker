@@ -1,4 +1,4 @@
-FROM golang:1.13.6
+FROM golang:1.13.8
 COPY . /go/src/github.com/lutomas/microservice_docker
 WORKDIR /go/src/github.com/lutomas/microservice_docker
 RUN make install-docker-backend
